@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+        <link href="images/favicon.png" rel="icon"  title="FoodTech"/>
+
+        <title>Documentation | FoodTech</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"/>
+        <!-- Custom Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+    </head>
+
+    <body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!-- Preloader End --> 
+
+        <!-- Document Wrapper   
+        =============================== -->
+        <div id="main-wrapper"> 
+
+            <!-- Header
+            ============================ -->
+            <header id="header" class="sticky-top"> 
+                <!-- Navbar -->
+                <nav class="primary-menu navbar navbar-expand-lg ">
+                    <div class="container-fluid">
+                        <!-- Sidebar Toggler -->
+                        <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span></span></button>
+                        <!-- Logo --> 
+                        <img src="images/logo.png" width="" height="" alt="logo"/>
+                        <!-- Logo End -->
+                    </div>
+                </nav>
+                <!-- Navbar End --> 
+            </header>
+            <!-- Header End --> 
+
+            <!-- Content
+            ============================ -->
+            <div id="content" role="main">
+
+                <!-- Sidebar Navigation
+                ============================ -->
+                <div class="idocs-navigation bg-dark docs-navigation-dark">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a href="#introduction" class="nav-link active">Introduction</a></li>
+                     
+                        <li class="nav-item"><a href="#setup" class="nav-link">Setup</a>
+                            <ul class="nav flex-column">
+                                <li class="nav-item"><a class="nav-link" href="#backEndSetup">Back-End Setup</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#part_I">Part -I</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#part_II">Part -II</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#projectRequirementConfiguration">Project Requirement & Configuration</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#commonServerSetup" class="nav-link">Common Server Setup</a></li>
+                        <li class="nav-item"><a href="#environmentSetupforFlutter" class="nav-link">Environment Setup for Flutter</a></li>
+                        <li class="nav-item"><a href="#linkFirebaseAccountPushNotifications" class="nav-link">Link Firebase account & Push Notifications</a></li>
+                        <li class="nav-item"><a href="#mobileAppCustomization" class="nav-link">Mobile App Customization</a></li>
+                        <li class="nav-item"><a href="#support" class="nav-link">Support</a></li>
+                    </ul>
+                </div>
+
+                <!-- Docs Content  -->
+                <div class="idocs-content">
+                    <div class="container"> 
+
+                        <!-- Getting Started -->
+                        <section id="introduction">
+                            <h3>Introduction</h3>
+                            <p class="">FoodTech is a single solution for Multi Restaurant food delivery system developed using Flutter and Laravel Framework.</p>
+                            <p>This product has three apps, APIs and Admin Panel which are Customer app, Restaurant app (Vendor/Provider), Driver app and Admin Dashboard. This documentation will be helpful in setting up FoodTech Admin Panel and mobile applications for iOS and Android.</p>
+                        </section>
+                         
+
+                        <hr class="divider">  
+
+                        <section id="setup">
+                           
+
+                            <section id="backEndSetup">
+                                <h3>Back-End Setup</h3>
+                                <p>The back-end of the Foodtech app is segregated into two main components: API services tailored for mobile application functionality and backend operations, and an Admin Panel responsible for overseeing and managing business activities via an administrative dashboard.</p>
+                                <p>To achieve a precise setup, we initiate by configuring the 'foodtech_api' package. Afterward, we proceed to set up the 'foodtech_admin_panel' package by following the steps outlined below.</p>
+                                
+                                <h4>Environment pre requisites</h4>
+                                <ol>
+                                    <li> Laravel Version : 9</li>
+                                    <li> PHP Version : 8.1</li>                                   
+                                   <!--  <li>Insid.
+                                        <img src="images/" alt="FoodTech" />
+                                    </li> -->
+                                </ol>
+                                <hr>
+                                
+                            </section>
+                          
+
+                            <section id="part_I">
+                                <h4>Part -I [FoodTech API]</h4>
+                                <p>Follow the below steps to install the <strong>FoodTech API</strong> package.</p>
+                                <h5># Installation</h5>
+                                <ol>
+                                    <li>Please download `foodtech_api.zip` and extract the folders to the preferred location on the server.</li>
+                                    <li>Create a MySQL database for the project - `food-example`
+                                        <!-- <img src="images/1.png" alt="FoodTech" /> -->
+                                    </li>
+                                    <li>From the projects root run `cp .env.example .env`</li>
+                                    <li>Configure your `.env` file</li>
+                                    <li>From the projects root folder run `composer update`</li>
+                                    <li>From the projects root folder run `php artisan key:generate`</li>
+                                    <li>From the projects root folder run `php artisan migrate:fresh --seed`</li>
+                                    <li>From the projects root folder run `composer dump-autoload`</li>
+                                    <li>From the projects root folder run `php artisan storage:link`</li>
+                                    <li>From the projects root folder run `php artisan l5-swagger:generate` (https://github.com/DarkaOnLine/L5-Swagger)</li>
+                                    <li>From the projects root folder run (local) `php artisan schedule:work` for server use supervisor</li>
+                                    <li>From the projects root folder run (local) `php artisan schedule:work` for server use scheduling * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1</li>
+                                </ol>
+                                <h5># Admin Panel</h5>
+                                <ol>
+                                    <li>The 'foodtech_api.zip' project should be installed after deploying the API code on your server or machine.</li>
+                                </ol>
+                                <h5>### Storage folder Ownership and Permission</h5>
+                                <ol>
+                                    <li>Check the permissions on the storage directory: `chmod -R 775 storage`</li>
+                                    <li>Check the ownership of the storage directory: : `chown -R www-data:www-data storage`</li>
+                                </ol>
+                                <h5>### Seeds</h5>
+                                <h5>##### Seeded Roles</h5>
+                                <ul>
+                                    <li>Unverified</li>
+                                    <li>Cusotmer</li>
+                                    <li>Admin</li>
+                                    <li>Vendor(store)</li>
+                                    <li>Driver</li>
+                                </ul>
+                                <h5>##### Seeded Users</h5>	
+                                	<ul>
+                                        <li>Access Type: Admin Access</li>
+                                        <li>Email: admin@admin.com</li>
+                                        <li>Password: admin123</li>
+                                    </ul>
+                                <h5>## Remove public from url</h5>
+                                <p><code>&lt;IfModule mod_rewrite.c&gt;<br>RewriteEngine On<br>RewriteRule ^(.*)$ public/$1 [L]<br>&lt;/IfModule&gt;</code></p>
+                                <h5>## Cron Jobs</h5>
+                                <ol>
+                                    <li>Send scheduled push notification `Push\NotificationController@sendScheduledPushNotification`.</li>
+                                    <li>Send scheduled order Notification `Orders\OrderController@updateOrderSchedule`.</li>
+                                    <li>Send remainder if order not accept from store `Orders\OrderController@updateOrderReminder`.</li>
+                                </ol>
+                                <h5>## Queue Jobs</h5>
+                                <ol>
+                                    <li>Send new order notification to drivers `SendOrderToDriver`.</li>
+                                    <li>Cancel Order if store not accept order `CancelOrderToSystem`.</li>
+                                    <li>If sharing payment not complete,them cancelled order `PartialPaymentOrderCancel`.</li>
+                                    <li>Send notification for pending payment `PendingPaymentNotification`.</li>
+                                    <li>Refund payment when order rejected from store `RejectedOrderRefund`.</li>
+                                </ol>
+
+                                <hr> 
+                            </section>
+                            <section id="part_II">
+                                <h4>Part -II [FoodTech Admin Panel]</h4>
+                                <p>Follow the below steps to install the <strong>FoodTech Admin Panel</strong> package.</p>
+                                <h5># Installation</h5>
+                                <h5>## Step 1 </h5>
+                                <ol>
+                                    <li>Project `foodtech_api` should be pre-installed in your server or machine</li>
+                                </ol>
+                                <h5>## Step 2 </h5>
+                                <ol>
+                                    <li>Please download `foodtech_admin_panel.zip` and extract the folders to the preferred location on the server and Follow the below mentioned commands to access the food-admin-panel.</li>
+                                    <li>From the projects root run `cp .env.example .env`</li>
+                                    <li>Configure your `.env` file</li>
+                                    <li>Use a same api database (`foodtech_api.zip`) for the project (`foodtech_admin_panel.zip`) both of the projects are connected with the same database</li>
+                                    <li>From the projects root folder run `composer update`</li>
+                                    <li>From the projects root folder run `php artisan key:generate`</li>
+                                    <li>From the projects root folder run `php artisan db:seed`</li>
+                                    <li>From the projects root folder run `composer dump-autoload`</li>
+                                    <li>From the projects root folder run `php artisan storage:link`</li>
+                                    <li>From the projects root folder run (local) `php artisan schedule:work` for server use supervisor</li>
+                                    <li>From the projects root folder run (local) `php artisan schedule:work` for server use scheduling * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1</li>
+                                </ol>
+                                <h5>### Storage folder Ownership and Permission</h5>
+                                <ol>
+                                    <li>Check the permissions on the storage directory: `chmod -R 775 storage`</li>
+                                    <li>Check the ownership of the storage directory: : `chown -R www-data:www-data storage`</li>
+                                </ol>
+                                <h5>### Seeds</h5>
+                                <h5>##### Seeded Roles</h5>
+                                <ul>
+                                    <li>Unverified</li>
+                                    <li>Cusotmer</li>
+                                    <li>Admin</li>
+                                    <li>Vendor(store)</li>
+                                    <li>Driver</li>
+                                </ul>
+                                <h5>##### Seeded Users</h5> 
+                                    <ul>
+                                        <li>Access Type: Admin Access</li>
+                                        <li>Email: admin@admin.com</li>
+                                        <li>Password: admin123</li>
+                                    </ul>
+                                <h5>## Remove public from url</h5>
+                                <p><code>&lt;IfModule mod_rewrite.c&gt;<br>RewriteEngine On<br>RewriteRule ^(.*)$ public/$1 [L]<br>&lt;/IfModule&gt;</code></p>
+
+                                <hr> 
+                            </section>
+                            <section id="projectRequirementConfiguration">
+                                <h4>Project Requirement & Configuration</h4>
+                                <ol>
+                                    <li><strong>SMS</strong>– We are currently using Twilio and Unifonic to enable the SMS service.</li>
+                                    <li><strong>Push Notification</strong>– We use the Firebase service to enable push notifications. To activate push notifications, we need to edit the server key in the code.</li>
+                                    <li><strong>Navigation</strong>– We use the Google Maps service to enable navigation. To activate it, you need to generate and replace the key.</li>
+                                    <li><strong>File storage</strong>- You can save the file using either your device's local storage or Amazon S3 storage.</li>
+                                    <li><strong>Database</strong>– Our system works with two databases: MySQL and PostgreSQL.</li>
+                                    <li><strong>Mail</strong>– For email support, you can integrate various third-party services with our system.</li>
+                                    <li><strong>API Testing</strong>– To document and test the APIs, you can use Swagger version 2.0</li>
+                                    <li><strong>Notifications on Slack</strong>- To enable system notifications on Slack, you need to replace the 'LOG_SLACK_WEBHOOK' in the .env file.</li>
+                                    <li><strong></strong>To set the default location in the platform, you need to update your location in the .env file by replacing the longitude and latitude</li>
+                                </ol>
+                                <hr> 
+                            </section>
+                        </section>
+
+                <section id="commonServerSetup">
+                            <h3>Common Server Setup</h3>
+                            <ol>
+                                <li><strong>Prepare the Server</strong>- Choose a server provider (e.g., AWS, DigitalOcean, Linode) and set up a virtual private server (VPS) or cloud instance. Access the server through SSH using the provided credentials.</li>
+                                <li><strong>Upload the .zip File</strong>- Upload the foodtech_api or foodtech_admin_panel project's .zip file to the server using a tool like SCP (Secure Copy Protocol) or SFTP (SSH File Transfer Protocol).</li>
+                                <li><strong>Extract the .zip File</strong>- Navigate to the directory where you uploaded the .zip file and extract it using the unzip command.<br> <code>Copy code:  unzip project.zip -d /path/to/destination</code> </li>
+                                <li><strong>Install Necessary Software</strong>- Install necessary software such as PHP, Composer, MySQL (or any other database of your choice), and a web server (e.g., Apache or Nginx).</li>
+                                <li><strong>Configure PHP</strong>- Configure PHP settings based on Laravel's requirements. Adjust PHP configuration files (e.g., php.ini) to set the appropriate values for memory limits, file uploads, etc.</li>
+                                <li><strong>Install Composer</strong>- Install Composer, a dependency manager for PHP, on the server. Follow the official installation instructions for your operating system.</li>
+                                <li><strong>Configure Environment Variables</strong>- Create a .env file in the project root and configure the necessary environment variables (e.g., database credentials, app key) for your Laravel application.</li>
+                                <li><strong>Generate Application KeyGenerate Application Key</strong>- Run the php artisan key:generate command to generate the application key for Laravel.</li>
+                                <li><strong>Migrate the Database</strong>- Run the necessary database migrations to set up the database schema using the php artisan migrate command.</li>
+                                <li><strong>Optimize Configuration</strong>- Optimize the application's configuration using the php artisan config:cache command.</li>
+                                <li><strong>Set Up Web Server</strong>- Configure the web server (e.g., Apache or Nginx) to point to the public directory of your Laravel project.</li>
+                                <li><strong>Restart Web Server</strong>- Restart the web server to apply the configuration changes.</li>
+                                <li><strong>Verify Deployment</strong>- Access your Laravel API using the server's IP address or domain name and test the functionality to ensure the deployment was successful.</li>
+                            </ol>
+                            <hr>
+                </section>
+
+                <section id="environmentSetupforFlutter">
+                    <h3>Environment Setup for Flutter</h3>
+                    <h5>Setting up</h5>
+                    <p>In this module, we are going to outline how to configure your Flutter development.</p>
+                    <h6>Install Basic Flutter Development Tools</h6>
+                    <p>View the Flutter Installation Guide to know about basic <a href="https://flutter.dev/docs/get-started/install" rel="noopener" target="_blank">flutter development</a>.</p>
+                    <h5>Android</h5>
+                    <h6>Configure Flutter Development for Android</h6>
+                    <p>To prepare Flutter for Android development, you should install Dart, Flutter, optionally Visual Studio Code, and Android Studio, then follow these straightforward steps</p>
+                    <ul>
+                    <li>Install &amp; Configure with <a href="https://flutter.dev/docs/get-started/install" rel="noopener" target="_blank">Flutter Installation Guide</a></li>
+                    <li>Download &amp; Install <a href="https://code.visualstudio.com/" rel="noopener" target="_blank">Visual Studio Code</a></li>
+                    <li>Download &amp; Install <a href="https://developer.android.com/studio" rel="noopener" target="_blank">Android Studio</a> (recommended)</li>
+                    </ul>
+                    <h5>iOS</h5>
+                    <h6>Configure Flutter Development for iOS</h6>
+                    <p>Install Cocoapods, Xcode (Make sure to check the latest version of Xcode).</p>
+                    <h6>Setting up Project</h6>
+                    <p>Download the zip files containing the applications and extract them to your desired location. Open the project using Visual Studio, Android Studio, or Xcode</p>
+                    <p><img class="col-8" decoding="async" src="images/foodtech_flutter_folder.png" alt=""></p>
+                    <hr>
+                </section>
+                <section id="linkFirebaseAccountPushNotifications">
+                    <h3>Link Firebase account & Push Notifications</h3>
+                          <h5>Firebase Integration</h5>
+                          <h5>a) Create a Firebase Account</h5>
+                          <p><a href="https://firebase.google.com/" target="_blank" rel="noopener">First Create a Firebase account</a> and then access to your own Firebase Console. One Firebase account has the capability to accommodate multiple Firebase Projects, each of which can in turn host multiple mobile apps.</p>
+                          <h5>b) Configure a Firebase Project</h5>
+                          <p>Generate a Firebase mobile app project for each app you planning to release. If you plan to publish your app on both iOS and Android platforms, you must create different Firebase apps, as they are technically considered separate applications.</p>
+                          <p>If you wish your Flutter app to be compatible with both iOS and Android, you should create distinct mobile apps for each platform within Firebase. To do this, simply click the '<strong>Add App</strong>' button.</p>
+                         
+                         <p>Once you've chosen the platform (iOS or Android), you'll be required to provide the app's identifier. Depending on the Flutter template you've buy, you need to locate the appropriate identifier within the downloaded files package.</p>
+
+                         <h6 class="step-title">for Android, go to android/app/build.gradle and get the applicationId</h6>
+                         <p><img class="col-12" decoding="async" src="images/configure-a-firebase.png" alt=""></p>
+                         <h6 class="step-title">for iOS, open the app using Xcode and find the Bundle ID field in the project's settings.</h6>
+                        <p>Once you have the bundle ID, just use it in Firebase, <a href="https://developers.google.com/android/guides/client-auth" target="_blank" rel="noopener">add your sha1 or sha256 key</a> (For Mobile verification) and create the app.</p>
+                        <div class="tip-box info-box">
+                        <h5><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-exclamation-circle" style="margin-bottom: 2px;" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg> Note:</h5>
+                        <p>Prior to sending your app for review on the App Store or Google Play, it's essential to modify these bundle identifiers with your distinctive ones. This adjustment is necessary as both app stores prohibit the use of duplicate application IDs.</p>
+                        </div>
+                        <h5>c) Enable Firebase Authentication</h5>
+                        <p>To setup Firebase Authentication, go to <a href="https://console.firebase.google.com/?pli=1" target="_blank" rel="noopener">Firebase Console</a> -&gt; Authentication -&gt; Sign-in Methods and a the methods that you are going to support in your app.</p>
+                        <p><img class="col-12" decoding="async" src="images/firebase_authentication.png" alt=""></p>
+                        <h5>d) Enable Firebase Firestore</h5>
+                        <p><img class="col-12" decoding="async" src="images/firebase_firestore.png" alt=""></p>
+                        <p>To allow the mobile app to read and write data to/from Firebase Firestore, set up the correct access permissions.just head over to Database -&gt; Cloud Firestore and set the Rules for writes and reads to the public.</p>
+                        <pre>service cloud.firestore
+                          <code class="">{</code><code class="">match</code><code class="">/</code><code class="">databases</code><code class="">/</code><code class="">}</code><code class="">database</code><code class="">},</code><code class="">/</code><code class="">documents</code> <code class="">{</code><code class="">match</code><code class="">/</code><code class="">{</code><code class="">document</code><code class="">=**</code><code class="">},</code> <code class="">{</code><code class="">allow read, write: if true;</code><code class="">},</code> <code class="">},</code> <code class="">}</code>
+                        </pre>
+                        <h5>e) Enable Firebase Storage</h5>
+                        <p><img class="col-12" decoding="async" src="images/firebase_storage.png" alt=""></p>
+                        <p>If your mobile app needs access to Firebase Storage (e.g. for uploading photos and videos, for instance), you have to enable Firebase Storage, so that the functionality works properly. To enable it, just go to Storage in the left menu.</p>
+                        
+                        <pre>service cloud.firestore    
+                        <code class="">{</code><code class="">service firebase.storage</code> <code class="">{</code><code class="">match</code> <code class="">/</code><code class="">b</code><code class="">/</code><code class="">{</code><code class="">bucket</code><code class="">}</code><code class="">/</code><code class="">o</code> <code class="">{</code><code class="">match</code> <code class="">/</code><code class="">{</code><code class="">allPaths</code><code class="">=**</code><code class="">}</code> <code class="">{</code><code class="">allow read, write: if request.auth</code> <code class="">!=</code> <code class="">null</code><code class="">;</code> <code class="">}</code> <code class="">}</code> <code class="">}</code></pre>
+
+                        <h5>f) Link Firebase Account to Your Mobile App</h5>
+                        <p>After creating your app, Firebase will generate a configuration file with a specific name (for Android, it's "google-service.json," and for iOS, it's "GoogleService-Info.plist"). You need to incorporate this file into your Flutter app for it to connect with your custom Firebase backend. To achieve this, simply download the configuration file and replace the existing placeholder files with it:</p>
+                        <p><img class="col-6" decoding="async" src="images/ios_google_service_info_file.png" alt=""></p>
+                        <h6 class="step-title"><strong>iOS:</strong> Download the GoogleService-Info-plist file and override the<br>
+                        existing ios/NameOfApp/GoogleService-Info.plist file.</h6>
+                        <p><img class="col-6" decoding="async" src="images/android_google_service_json_file.png" alt=""></p>
+                        <h6 class="step-title"><strong>Android:</strong> Download the google-service.json file and replace the<br>
+                        existing android/app/google-service.json file.</h6>
+                        <p>Update those files in all three apps as mentioned.</p>
+                        <p>If you've previously set up an app in Firebase, you can locate and download the configuration file within the Firebase Console by navigating to "Project Settings."</p>
+                        <p>Run your freshly created Flutter template, and your mobile app will utilize your custom Firebase backend, rather than the default setup. Ensure that you've added all the necessary tables and data to your Firebase database so that the app has content to display, such as food categories, chat messages, and more. To promptly evaluate the Flutter-Firebase integration, consider registering a new user and verifying their presence in the Firebase Authentication tab.</p>
+                        <h5>g) Enable SMS Phone Authentication</h5>
+                        <p>To enable SMS authentication through Firebase, there are specific configurations that need to be set up, enabling the app to send SMS messages to users.</p>
+                        <p>Enable Phone Authentication within Firebase by navigating to Authentication > Sign-in method > Phone Authentication, and then toggle the Enable switch.</p>
+                        <p><img class="col-12" decoding="async" src="images/sms_phone_authentication.png" alt=""></p>
+                        <h4>Push Notifications</h4>
+                        <p>This application utilizes Google Cloud Messaging, integrated within Firebase, for the purpose of delivering push notifications to both iOS and Android devices.</p>
+                        <p>Push notifications are set up to work with our staging Firebase project by default in all of our Flutter templates. To use them with your own project, you need to switch the configuration. This is similar to how you switched the configuration for Firestore.<p>
+                        <h5>Setting Up Your Own Firebase for Push Notifications</h5>
+                        <p>To configure them with your own Firebase account, simply replace the Server Key in the lib/constants.dart file with your own.</p>
+                        <h5>a) In Firebase, go to Project Settings -&gt; Cloud Messaging and copy the Server Key to clipboard</h5>
+                        <p><img class="col-6" decoding="async" src="images/cloud_messaging_1.png" alt=""></p>
+                        <p><img class="col-12" decoding="async" src="images/cloud_messaging_4.png" alt=""></p>
+                        <p>If your Cloud Messaging API is not enabled yet first you need to enable it to get the server key please follow the following steps to enable the Cloud Messaging</p>
+                        <p>1) Click on the three dots on the right side of the Cloud Messaging API section.</p>
+                        <p><img class="col-12" decoding="async" src="images/cloud_messaging_2.png" alt=""></p>
+                        <p>2) After click on three dots you can able to see the link text to go to Google Cloud Console there you need to hit the Enable button then come back to Firebase tab in the browser and refresh the page.</p>
+                        <p><img class="col-6" decoding="async" src="images/cloud_messaging_3.png" alt=""></p>
+                        <p>3) After refreshing the page you can able to see the Sever Key.</p>
+                        <h5>b) Within the source code, navigate to lib/constants.dart and replace the Server Key (identified as the SERVER_KEY constant) with your unique one:</h5>
+                        <p><strong>const SERVER_KEY = “YOUR_UNIQUE_SERVER_KEY”;</strong></p>
+                        <p><img class="col-12" decoding="async" src="images/server-key-update-in-flutter.png" alt=""></p>
+                        <h5>c) also place the key in file named FirebaseHelper.dart where sendFcmMessage method placed in that method replace text Enter Your Fcm Key with your own.</h5>
+                         <p><img class="col-6" decoding="async" src="images/enter-key.png" alt=""></p>
+                         <h5>Code Documentation</h5>
+                         <p><code>sendNotification(String token, String title, String body) async {}</code></p>
+                         <p><code>sendFcmMessage(String title, String message, String Token)</code></p>
+                         <p>To identify all the places that trigger push notifications, simply search for this method in the project.</p>
+                         <h5 class="">Setup with firebase</h5>
+                         <h6>1. Setup with firebase using flutterFire</h6>
+                         <p><strong>Follow this link to setup with firebase :-</strong> <a href="https://firebase.google.com/docs/flutter/setup?platform=ios" target="_blank" rel="noopener">https://firebase.google.com/docs/flutter/setup?platform=ios</a></p>
+                         <h5>3. Setup manually</h5>
+                         <h6>A) For android</h6>
+                         <p><img class="col-12" decoding="async" src="images/firebase_android_select.png" alt=""></p>
+                         <h6>i) Enter package name</h6>
+                         <p><img class="col-8" decoding="async" src="images/firebase_android_reg.png" alt=""></p>
+                         <h6>ii) Download google-services.json file</h6>
+                         <p><img class="col-8" decoding="async" src="images/firebase_android_json.png" alt=""></p>
+                         <h6>iii) Place google-services.json file in /android/app/</h6>
+                         <p><img class="col-6" decoding="async" src="images/android_google_service_json_file.png" alt=""></p>
+                         <h5>B) For IOS.</h5>
+                         <p><img class="col-12" decoding="async" src="images/firebase_ios_select.png" alt=""></p>
+                         <h6>i) Enter package name</h6>
+                         <p><img class="col-8" decoding="async" src="images/firebase_ios_reg.png" alt=""></p>
+                         <h6>ii) Enter package name and download GoogleService-Info.plist</h6>
+                         <p><img class="col-8" decoding="async" src="images/firebase_ios_plist.png" alt=""></p>
+                         <h5>iii) Place GoogleService-Info.plist in /iOS/</h5>
+                         <p><img class="col-6" decoding="async" src="images/ios_google_service_info_file.png" alt=""></p>
+                         <hr>
+                </section>
+                <section id="mobileAppCustomization">
+                    <h3>Mobile App Customization</h3>
+                    <h5>Application Changes</h5>
+                    <h5>Change App Name (Repeat these identical steps for all three applications: customer, driver, and restaurant.)</h5>
+                    <h5>Android</h5>
+                    <h5># Change the value of <code>android:label="AppName"</code> under .xml file</h5>
+                    <p><strong>/android/app/src/main/AndroidManifest.xml</strong></p>
+                    <p><img class="col-12" decoding="async" src="images/app_name_android.png" alt=""></p>
+                    <h5># Change the value of <code>applicationId "com.appname"</code> under .xml file</h5>
+                    <p><strong>/android/app/src/build.gradle</strong></p>
+                    <p><img class="col-12" decoding="async" src="images/android_applicationId.png" alt=""></p>
+                    <h5>iOS</h5>
+                    <h5># Change the value of [CFBundleName] <code>CFBundleDisplayName</code> & <code>CFBundleName</code> under Info.plist</h5>
+                    <p><strong>/iOS/Runner/Info.plist</strong></p>
+                    <p><img class="col-12" decoding="async" src="images/info_plist_cfbundle.png" alt=""></p>
+                    <h4>Replace Map key</h4>
+                    <h5>1. Android</h5>
+                    <p><strong>/android/app/src/main/AndroidManifest.xml</strong></p>
+                    <p><img class="col-12" decoding="async" src="images/android_google_map_key.png" alt=""></p>
+                    <h5>2. IOS</h5>
+                    <p><strong>/ios/Runner/AppDelegate.swift</strong></p>
+                    <p><img class="col-12" decoding="async" src="images/ios_google_map_key.png" alt=""></p>
+                    <hr>
+                </section>
+
+                <section id="support">
+                    <h3>Support</h3>
+                    <p>We're delighted to assist you with our services and support. Feel free to reach out to our dedicated support team</p>
+                    <p>Head of Customer Support : Akash Verma<br> 
+                    Skype: <a href="https://join.skype.com/invite/vHPkavfa0XX3" target="_blank" style="color:#3c55d1"> Akash Verma</a><br></p>
+                    <p>In order to assist our customers effectively, we maintain open communication with each customer who requires assistance with our product. Our dedicated customer support team is available <strong>Monday to Friday, from 11:00 AM to 7:00 PM IST (GMT +5.30).</strong> We are based in India, located in the Asia.</p>
+                    <p>Usually, we respond to our customers' questions and inquiries within a 24-hour period through comments, the support forum, or emails.</p>
+                    <hr>
+
+                    <h3>Contact Us</h3>
+                    <p>Visit Us : <a href="https://www.dexbytes.com" target="_blank" style="color:#3c55d1">www.dexbytes.com</a></p>
+                    <p>Email : support@dexbytes.com</p>
+                    <p>Call & WhatsApp : +91 7880111724</p>
+                    <br>
+                    <br>
+                    <p>Thank You..!</p>
+                </section>
+                          
+                    </div>
+                </div>
+
+            </div>
+            <!-- Content end --> 
+
+
+        </div>
+        <!-- Document Wrapper end --> 
+
+        <!-- Back To Top --> 
+        <a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a> 
+
+        <!-- JavaScript
+        ============================ -->
+        <script src="assets/vendor/jquery/jquery.min.js"></script> 
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+        <!-- Easing --> 
+        <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script> 
+        <!-- Custom Script -->
+        <script src="assets/js/theme.js"></script>
+    </body>
+</html>
